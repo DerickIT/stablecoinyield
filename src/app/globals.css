@@ -1,6 +1,6 @@
-/* @tailwind base; */
-/* @tailwind components; */
-/* @tailwind utilities; */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 
 :root {
@@ -16,7 +16,7 @@ body {
 
 @layer utilities {
   .glass-panel {
-    @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-xl;
+    @apply bg-black/40 backdrop-blur-xl border border-white/10 shadow-2xl;
   }
 
   .glass-card {
@@ -24,10 +24,21 @@ body {
   }
 
   .glass-card:hover {
-    @apply bg-white/10 border-primary/30 shadow-[0_0_20px_rgba(0, 240, 255, 0.1)] -translate-y-0.5;
+    @apply bg-white/10 border-primary/30 shadow-[0_0_30px_rgba(0,240,255,0.15)] -translate-y-1;
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary via-blue-400 to-secondary animate-gradient-x;
+  }
+  
+  .animate-gradient-x {
+      background-size: 200% 200%;
+      animation: gradient-x 3s ease infinite;
+  }
+  
+  @keyframes gradient-x {
+      0% { background-position: 0% 50% }
+      50% { background-position: 100% 50% }
+      100% { background-position: 0% 50% }
   }
 }
