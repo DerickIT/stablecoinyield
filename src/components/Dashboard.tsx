@@ -53,24 +53,24 @@ export default function Dashboard() {
     }, [searchQuery, data]);
 
     return (
-        <div className="container-custom py-12 space-y-8">
+        <div className="container mx-auto px-4 py-12 space-y-8 max-w-7xl">
             {/* Header Section */}
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                 <div className="space-y-2">
-                    <h1 className="text-5xl font-bold tracking-tight">
+                    <h1 className="text-5xl font-bold tracking-tight text-white">
                         <span className="text-gradient">StableYield</span> Analytics
                     </h1>
-                    <p className="text-[var(--text-secondary)] text-lg">
+                    <p className="text-gray-400 text-lg">
                         Real-time stablecoin yield opportunities across DeFi.
                     </p>
                 </div>
 
                 <div className="flex items-center gap-4">
-                    <div className="glass-card px-4 py-2 flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-                        <Activity size={16} className="text-[var(--color-primary)]" />
+                    <div className="glass-card px-4 py-2 flex items-center gap-2 text-sm text-gray-300">
+                        <Activity size={16} className="text-primary" />
                         <span>Live Updates</span>
                     </div>
-                    <div className="glass-card px-4 py-2 text-sm text-[var(--text-tertiary)]">
+                    <div className="glass-card px-4 py-2 text-sm text-gray-500">
                         Last updated: {lastUpdated}
                     </div>
                 </div>
@@ -79,24 +79,24 @@ export default function Dashboard() {
             {/* Controls Section */}
             <div className="glass-card p-6 flex flex-col md:flex-row gap-4 items-center justify-between">
                 <div className="relative w-full md:w-96">
-                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--text-tertiary)]" size={20} />
+                    <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500" size={20} />
                     <input
                         type="text"
                         placeholder="Search protocol, chain, or token..."
-                        className="w-full bg-[rgba(0,0,0,0.2)] border border-[var(--border-light)] rounded-full py-3 pl-12 pr-4 text-[var(--text-primary)] focus:outline-none focus:border-[var(--color-primary)] transition-colors"
+                        className="w-full bg-black/20 border border-white/10 rounded-full py-3 pl-12 pr-4 text-white placeholder-gray-500 focus:outline-none focus:border-primary/50 transition-colors"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                 </div>
 
                 <div className="flex gap-3 w-full md:w-auto">
-                    <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-[var(--border-light)] hover:bg-[var(--bg-card-hover)] transition-colors text-[var(--text-secondary)]">
+                    <button className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors text-gray-300">
                         <Filter size={18} />
                         <span>Filter</span>
                     </button>
                     <button
                         onClick={fetchData}
-                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[var(--color-primary)] text-black font-bold hover:bg-[var(--color-primary-glow)] transition-all hover:shadow-[0_0_20px_var(--color-primary-glow)]"
+                        className="flex-1 md:flex-none flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-primary text-black font-bold hover:bg-primary/90 transition-all hover:shadow-[0_0_20px_rgba(0,240,255,0.3)]"
                     >
                         <RefreshCw size={18} className={isLoading ? "animate-spin" : ""} />
                         <span>Refresh</span>
@@ -113,17 +113,17 @@ export default function Dashboard() {
                     <button
                         onClick={() => setCurrentPage(p => Math.max(1, p - 1))}
                         disabled={currentPage === 1}
-                        className="px-4 py-2 rounded-lg glass-card hover:bg-[var(--bg-card-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="px-4 py-2 rounded-lg glass-card hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-gray-300"
                     >
                         Previous
                     </button>
-                    <span className="text-[var(--text-secondary)]">
+                    <span className="text-gray-400">
                         Page {currentPage} of {Math.ceil(filteredData.length / itemsPerPage)}
                     </span>
                     <button
                         onClick={() => setCurrentPage(p => Math.min(Math.ceil(filteredData.length / itemsPerPage), p + 1))}
                         disabled={currentPage >= Math.ceil(filteredData.length / itemsPerPage)}
-                        className="px-4 py-2 rounded-lg glass-card hover:bg-[var(--bg-card-hover)] disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                        className="px-4 py-2 rounded-lg glass-card hover:bg-white/10 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-gray-300"
                     >
                         Next
                     </button>
